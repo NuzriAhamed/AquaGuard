@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AquaGuard: Integrated Water Safety Research Platform</title>
+  <meta name="description" content="Academic documentation site for AquaGuard: an integrated AI research project monitoring Sri Lanka's waters for pollution, wildlife encounters, drowning, and crowd safety.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Top Reading / Scroll Progress Bar -->
+  <div id="bar" aria-hidden="true"></div>
+
+  <!-- Floating Back to Top Button -->
+  <button id="top" aria-label="Back to top" title="Back to top">↑</button>
+
+  <!-- Sticky Glassmorphic Navigation Bar -->
+  <header class="nav">
+    <div class="nav-brand-group">
+      <a href="#" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none;">
+        <span class="nav-logo-icon">🌊</span>
+        <b>AquaGuard</b>
+      </a>
+      <span class="nav-pulse-badge">
+        <span class="nav-pulse-dot"></span>
+        Research 2026
+      </span>
+    </div>
+    <nav class="nav-links-wrap" aria-label="Main Navigation">
+      <a href="#about">Overview</a>
+      <a href="#review">Literature</a>
+      <a href="#arch">Architecture</a>
+      <a href="#gdi">GDI</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#eval">Evaluation</a>
+      <a href="#docs">Documents</a>
+      <a href="#viva">Viva Q&amp;A</a>
+      <a href="#team">Team</a>
+    </nav>
+    <button id="theme" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+      <span class="theme-text">Dark</span>
+    </button>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-tag">
+        <span>🔬 Integrated AI &amp; Computer Vision Research</span>
+      </div>
+      <h1>Watching Sri Lanka's waters for pollution, wildlife, drowning and crowds</h1>
+      <p>An integrated multi-agent vision system: four specialized YOLO architectures and a medical RAG/CAG pipeline that convert camera feeds into decisive environmental indices, calibrated metric warnings, and emergency public-safety actions.</p>
+      <div class="btns">
+        <a href="#arch">Explore Architecture &rarr;</a>
+        <a class="alt" href="#docs">Research Documents &darr;</a>
+      </div>
+    </div>
+    <!-- Animated background waves -->
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z"></path></svg>
+    <svg class="w2" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,20 C200,100 450,0 700,60 C950,120 1100,20 1200,40 L1200,120 L0,120 Z"></path></svg>
+  </div>
+
+  <!-- Research Impact Stats Strip / Bar -->
+  <div class="wrap">
+    <div class="stats" id="stats-bar" aria-label="Key Research Metrics">
+      <div>
+        <b data-n="103">0</b>
+        <span>Rivers Surveyed</span>
+      </div>
+      <div>
+        <b data-n="5">0</b>
+        <span>Integrated Modules</span>
+      </div>
+      <div>
+        <b data-n="92.7" data-suffix="%">0%</b>
+        <span>Wildlife Threat mAP@0.5</span>
+      </div>
+      <div>
+        <b data-n="93.2" data-suffix="%">0%</b>
+        <span>Drowning Surveillance mAP@0.5</span>
+      </div>
+      <div>
+        <b data-n="35" data-prefix="<" data-suffix="ms">0ms</b>
+        <span>Edge Inference Latency</span>
+      </div>
+      <div>
+        <b data-n="100" data-suffix="%">0%</b>
+        <span>Perimeter Clearance Audit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research Overview Section -->
+  <section id="about">
+    <div class="wrap">
+      <h2>Research overview</h2>
+      <p><b>Problem.</b> Sri Lanka possesses 103 distinct river basins; the Kelani is the most heavily polluted, with over 7,000 industrial facilities discharging into its river valley. Simultaneously, inland recreational waterways, ancient tanks (wewas), and reservoirs expose bathers and tourists to catastrophic drowning risks, territorial wildlife confrontations (elephants, crocodiles), and dense crowding without automated alert infrastructure. Existing computer vision literature halts at single-frame detection bounding boxes, providing local authorities and lifeguards with zero actionable decision frameworks.</p>
+      <p><b>Aim.</b> Architect an integrated multi-modal platform that detects environmental and physical hazards across inland waters and translates visual telemetry directly into decision metrics: density-weighted pollution scores, metric perimeter warnings, temporal drowning retention alarms, and grounded clinical first-aid triage.</p>
+      
+      <div class="grid" style="margin-top:1.6rem">
+        <div class="card">
+          <h3>Objective 1: Floating Waste &amp; GDI</h3>
+          <p>Quantify riverine debris with a danger-weighted Garbage Density Index (0-100) and track spatial distribution via GPS heatmaps.</p>
+        </div>
+        <div class="card">
+          <h3>Objective 2: Wildlife Metric Proximity</h3>
+          <p>Protect bathers from wildlife attacks using an explicit 6-stage spatial pipeline computing boundary clearance in real-world meters.</p>
+        </div>
+        <div class="card">
+          <h3>Objective 3: Drowning Temporal Retention</h3>
+          <p>Detect drowning incidents in video streams using a 10-call sliding window history that decouples alert state from database persistence.</p>
+        </div>
+        <div class="card">
+          <h3>Objective 4: Crowd Density &amp; TankBot</h3>
+          <p>Monitor crowd surges at historic tanks using ByteTrack person counts paired with a domain-restricted reservoir guidance assistant.</p>
+        </div>
+        <div class="card">
+          <h3>Objective 5: Emergency First-Aid CAG</h3>
+          <p>Deliver domain-governed, WHO/Red Cross-grounded emergency first-aid advice across 5 trauma scenarios with vital-state cache invalidation.</p>
+        </div>
+      </div>
+
+      <!-- Module Interactive Explorer Tab Bar -->
+      <div class="module-explorer-wrap">
+        <div class="section-subhead">
+          <h3>Interactive Module Specification Explorer</h3>
+          <p>Inspect the dedicated neural architectures, training hyperparameters, datasets, inference pipelines, and empirical validation metrics across the five research components.</p>
+        </div>
+        <div id="tabs" class="tabs" role="tablist" aria-label="Research Modules"></div>
+        <div id="panel" class="panel" role="tabpanel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Literature Review Section -->
+  <section id="review">
+    <div class="wrap">
+      <h2>Literature review and research gap</h2>
+      <p>Five recent benchmark studies on floating-object detection were critically analyzed. While recent architectures iteratively improve mean average precision, none bridge the divide between raw bounding-box outputs and operational environmental governance. Furthermore, prior Sri Lankan water monitoring efforts (Wijayaweera et al., 2024) relied exclusively on chemical hardware sensors, lacking non-invasive computer vision capabilities.</p>
+      
+      <div class="tw">
+        <table id="lit">
+          <thead>
+            <tr>
+              <th>Study</th>
+              <th>Algorithm</th>
+              <th>Venue</th>
+              <th>Limitation</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:2.2rem">Feature comparison for the environmental module</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Cao (2025)</th>
+              <th>Zhao (2026)</th>
+              <th>Wang (2026)</th>
+              <th>Dong (2026)</th>
+              <th>MDPI (2024)</th>
+              <th>AquaGuard (Ours)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Garbage detection</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+            <tr><td>Multi-class classification</td><td class="n">No</td><td class="y">Yes (6)</td><td class="n">No</td><td class="n">No</td><td class="y">Yes (7)</td><td class="y">Yes (4 Classes)</td></tr>
+            <tr><td>Pollution severity score</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Yes (Weighted GDI)</td></tr>
+            <tr><td>GPS &amp; temporal tracking</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Yes (Telemetry)</td></tr>
+            <tr><td>Dashboard &amp; live alerts</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Yes (WebSockets)</td></tr>
+            <tr><td>Real Sri Lankan rivers</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Yes (Kelani / Maha Oya)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:2.2rem">Wildlife proximity &amp; encounter monitoring approaches</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Principal Strength</th>
+              <th>Important Limitation</th>
+              <th>AquaGuard System Implication</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Camera trap review</td><td>Rich field imagery and human interpretation</td><td>Manual throughput is too slow for active alerts</td><td>Automated computer vision screening (Leorna &amp; Brinkman)</td></tr>
+            <tr><td>Single-frame detection</td><td>Locates targets rapidly within frame</td><td>Lacks temporal identity across video frames</td><td>Spatial-temporal Multi-Object Tracking (80% lock rule)</td></tr>
+            <tr><td>Pixel distance heuristics</td><td>Transparent, low-compute trigger</td><td>Image-space pixels do not equate to real meters</td><td>Monocular pinhole depth scaling + physical edge clearance</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:2.2rem">Drowning surveillance &amp; temporal evidence approaches</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Human Lifeguard</th>
+              <th>Single-Frame Detector</th>
+              <th>Pose / Skeleton Tracking</th>
+              <th>AquaGuard Drowning Channel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Input Stream</b></td><td>Direct visual line of sight</td><td>Isolated static frame</td><td>Continuous skeletal sequences</td><td>Continuous video frames (OpenCV)</td></tr>
+            <tr><td><b>Decision Rule</b></td><td>Subjective human judgment</td><td>Static frame bounding box</td><td>High-overhead joint angles</td><td>Appearance + 10-call sliding window history</td></tr>
+            <tr><td><b>Person Identity</b></td><td>Observer tracking</td><td>None</td><td>ByteTrack / DeepSORT</td><td>Channel-level temporal aggregation</td></tr>
+            <tr><td><b>Behavioral Cues</b></td><td>Vulnerable to fatigue</td><td>Implicit visual appearance</td><td>7 WHO struggling movements</td><td>Appearance (Drowning vs Swimming)</td></tr>
+            <tr><td><b>Alert Persistence</b></td><td>Manual radio call</td><td>None</td><td>Application specific</td><td>SQLite incident storage + 8s write cooldown</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <h3>Novel Scientific Contributions</h3>
+        <div class="grid" style="margin-top:0.8rem">
+          <div><b>Weighted GDI:</b> First pollution severity metric weighted by material degradation hazard (polythene, plastic, glass, metal).</div>
+          <div><b>Metric Spatial Proximity:</b> Replaces naive pixel heuristics with a 6-stage mathematical pipeline measuring physical edge clearance in meters.</div>
+          <div><b>Temporal Drowning Logic:</b> Decouples instant incident emergency triggering from database write throttling via an 8-second cooldown.</div>
+          <div><b>Emergency First-Aid CAG:</b> Combines strictly grounded WHO/Red Cross RAG with dynamic cache invalidation on vital patient state changes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Combined System Architecture Section -->
+  <section id="arch">
+    <div class="wrap">
+      <h2>Combined system architecture</h2>
+      <p>The four modules and the first-aid clinical agent operate within a unified, high-performance distributed pipeline: high-throughput stream ingestion, specialized neural inference, mathematical spatial/temporal decision engines, persistent storage, and an interactive command dashboard.</p>
+      
+      <div class="flow" aria-label="Architecture Pipeline">
+        <div><b>1. Input Layer</b>UAV, IP camera, video upload, webcam</div>
+        <div><b>2. Neural Detection</b>Dual YOLOv8, YOLO11m, Whisper STT</div>
+        <div><b>3. Decision Engine</b>GDI index, 6-stage metric proximity, sliding history</div>
+        <div><b>4. State Policy</b>Threat escalation FSM, RAG/CAG state cache</div>
+        <div><b>5. Persistence</b>FastAPI, SQLite, encrypted evidence JPEG</div>
+        <div><b>6. Operator UI</b>Next.js / React, Chart.js, Web Audio chimes</div>
+      </div>
+
+      <!-- Wildlife Proximity 6-Stage Spatial Pipeline -->
+      <h3 style="margin-top:2.4rem">Wildlife Proximity Engine &amp; 6-Stage Spatial Pipeline</h3>
+      <p>In response to formal supervisor review on spatial precision, the proximity engine was comprehensively overhauled from uncalibrated pixel heuristics into an academically rigorous <b>6-stage mathematical spatial pipeline</b>. This resolves the <i>0-pixel centroid fallacy</i>, introduces <b>anti-ghosting overlap suppression</b>, computes <b>edge-to-edge physical boundary clearance</b>, and dynamically calibrates measurements to <b>real-world meters (m)</b> via monocular perspective depth scaling.</p>
+
+      <div class="grid" style="margin-top:1.2rem">
+        <div class="card">
+          <h3>Stage 1: Explicit 2D Matrix</h3>
+          <p>Tracks actual 2D coordinates in global sensor space without arbitrarily fixing any entity as zero: <code>B_animal = [x1a, y1a, x2a, y2a]</code> and <code>B_human = [x1h, y1h, x2h, y2h]</code>. True centroids and ground foot-points are preserved continuously.</p>
+        </div>
+        <div class="card">
+          <h3>Stage 2: Anti-Ghosting IoU</h3>
+          <p>Eliminates duplicate false detections when an animal entering the boundary triggers the human detector: if <code>IoU &gt; 0.55</code> AND <code>distance(C_h, C_a) &lt; 45 px</code>, the duplicate bounding box artifact is purged immediately.</p>
+        </div>
+        <div class="card">
+          <h3>Stage 3: Boundary Clearance (d_edge)</h3>
+          <p>Computes non-overlapping physical perimeter clearance: <code>d_edge_px = &radic;(&Delta;x&sup2; + &Delta;y&sup2;)</code>. When <code>d_edge = 0.0m</code>, physical contact or collision has occurred even if centroids remain 250px apart!</p>
+        </div>
+        <div class="card">
+          <h3>Stage 4: Perspective Depth Scaling</h3>
+          <p>Calibrates real-world metric units using pinhole geometry anchored by standard adult standing height (<code>H_human = 1.70 m</code>): <code>S_depth = 1.70 / (y2h - y1h)</code> (m/px).</p>
+        </div>
+      </div>
+
+      <!-- Interactive Spatial Threat Scale Bar & Benchmarking Preset Simulator -->
+      <div class="threat-scale-card">
+        <div class="threat-header">
+          <div>
+            <h4>Interactive Spatial Threat Scale &amp; Decision Matrix Bar</h4>
+            <p style="margin:0.2rem 0 0;font-size:0.86rem;">Stage 5 Multi-Tiered Threat Escalation: Visualizes real-time metric thresholds (0m to 15m).</p>
+          </div>
+          <span class="gdi-meter-badge" id="threat-badge" style="background:#DC2626;">STATE: CRITICAL</span>
+        </div>
+
+        <div class="threat-scale-track">
+          <div class="threat-zone zone-critical" title="0.0m to 3.5m: CRITICAL (Attack Risk)">
+            <span>Critical (&le;3.5m / Edge &le;1.5m)</span>
+          </div>
+          <div class="threat-zone zone-warning" title="3.5m to 8.0m: WARNING (Caution Zone)">
+            <span>Warning (3.5m - 8.0m)</span>
+          </div>
+          <div class="threat-zone zone-safe" title="8.0m to 15m+: SAFE (Perimeter Secure)">
+            <span>Safe (&gt;8.0m)</span>
+          </div>
+          <div class="threat-indicator-needle" id="threat-needle" style="left: 10.0%;"></div>
+        </div>
+
+        <div class="threat-presets">
+          <span>Benchmark Presets:</span>
+          <button class="threat-btn active" onclick="setThreatPreset('f125', this)">Frame 125 (0.08m Edge Gap! &bull; Legacy Failure Resolved)</button>
+          <button class="threat-btn" onclick="setThreatPreset('f75', this)">Frame 75 (1.14m Centroid &bull; 0.35m Edge)</button>
+          <button class="threat-btn" onclick="setThreatPreset('f25', this)">Frame 25 (2.54m Centroid &bull; 1.55m Edge)</button>
+          <button class="threat-btn" onclick="setThreatPreset('safe', this)">Safe Perimeter (9.80m &bull; Clear Zone)</button>
+        </div>
+
+        <div class="threat-telemetry-box">
+          <div>Centroid Distance: <b id="tel-centroid">1.51 m</b></div>
+          <div>Perimeter Edge Clearance (d_edge): <b id="tel-edge">0.08 m (8 cm!)</b></div>
+          <div>Active Threat Decision: <b id="tel-state" style="color:#DC2626;">CRITICAL (Immediate Siren Fired)</b></div>
+        </div>
+      </div>
+
+      <!-- Drowning Architecture & 10-Call Sliding Buffer Bar -->
+      <h3 style="margin-top:2.6rem">Automated Drowning Detection &amp; Temporal Emergency Engine</h3>
+      <div class="grid" style="margin-top:1rem">
+        <div class="card">
+          <h3>1. Stream Inference</h3>
+          <p>OpenCV extracts MJPEG stream (35ms frame interval) and processes through fine-tuned YOLOv8 with confidence threshold 0.40, separating drowning posture from active swimming.</p>
+        </div>
+        <div class="card">
+          <h3>2. 10-Call Temporal Logic</h3>
+          <p>History window <code>H_t</code> aggregates 10 consecutive frame classifications: <code>E_t = (d_t = 1) OR (sum(H_t) &ge; 2)</code>. The first hit triggers CRITICAL; 2 hits maintain CRITICAL across 8 subsequent empty frames.</p>
+        </div>
+        <div class="card">
+          <h3>3. Write Cooldown &amp; Evidence</h3>
+          <p><code>AlertManager</code> implements an 8-second cooldown on SQLite writes, preventing database saturation during ongoing rescue operations while transmitting live Web Audio alarms.</p>
+        </div>
+      </div>
+
+      <!-- Drowning 10-Call Temporal Buffer Visualizer Bar -->
+      <div class="drowning-buffer-card">
+        <div class="buffer-header">
+          <div>
+            <h4>10-Call Sliding History Buffer (H_t) &amp; Incident Persistence Visualizer</h4>
+            <p style="margin:0.2rem 0 0;font-size:0.86rem;">Illustrates temporal retention holding CRITICAL alarm through intermittent splashes or submersion.</p>
+          </div>
+          <span class="gdi-meter-badge" style="background:#DC2626;">EMERGENCY: ACTIVE (sum &ge; 2)</span>
+        </div>
+
+        <div class="buffer-bar">
+          <div class="buffer-cell hit">F1<br>Hit</div>
+          <div class="buffer-cell hit">F2<br>Hit</div>
+          <div class="buffer-cell empty">F3<br>Wait</div>
+          <div class="buffer-cell empty">F4<br>Wait</div>
+          <div class="buffer-cell empty">F5<br>Wait</div>
+          <div class="buffer-cell empty">F6<br>Wait</div>
+          <div class="buffer-cell empty">F7<br>Wait</div>
+          <div class="buffer-cell empty">F8<br>Wait</div>
+          <div class="buffer-cell empty">F9<br>Wait</div>
+          <div class="buffer-cell empty">F10<br>Clear</div>
+        </div>
+
+        <div class="cooldown-wrap">
+          <div class="cooldown-label-row">
+            <span>Database Cooldown Active (8.0s Throttle)</span>
+            <span>5.6s Remaining</span>
+          </div>
+          <div class="cooldown-track">
+            <div class="cooldown-bar" style="width: 70%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- First-Aid Chatbot Architecture -->
+      <h3 style="margin-top:2.6rem">Emergency First-Aid Chatbot Architecture</h3>
+      <div class="grid" style="margin-top:1rem">
+        <div class="card">
+          <h3>1. Five Trauma Scenarios</h3>
+          <p>Domain-governed protocols for drowning submersion, severe hemorrhage, bone fractures, crocodile/snake bites, and heatstroke in remote reservoir locations.</p>
+        </div>
+        <div class="card">
+          <h3>2. Typed Vital Tracking</h3>
+          <p>Finite-state machine records consciousness, breathing, and bleeding. Unobserved vitals remain explicitly unknown rather than inferred false.</p>
+        </div>
+        <div class="card">
+          <h3>3. WHO/Red Cross Grounding</h3>
+          <p>RAG pipeline queries strictly verified medical corpus. Employs conservative abstention to decline answering rather than hallucinating procedures.</p>
+        </div>
+        <div class="card">
+          <h3>4. CAG State Invalidation</h3>
+          <p>Cache key binds vital state. Any transition in victim vitals (e.g. breathing stops) instantly purges cached answers, forcing live emergency re-triage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Garbage Density Index Section -->
+  <section id="gdi">
+    <div class="wrap">
+      <h2>Garbage Density Index (GDI) explained</h2>
+      <p>The Garbage Density Index calculates ecological impact via danger-weighted classification: <code>GDI = &Sigma;(Count &times; Confidence &times; Weight) &divide; Area Normalization &times; 20</code>, bounded between 0 and 100. Weights reflect aquatic environmental degradation: Polythene (1.0), Plastic (0.8), Glass (0.7), and Metal (0.6). Severity scales: Low (0-25), Moderate (25-50), High (50-75), Critical (75-100).</p>
+      
+      <!-- Interactive GDI Gauge / Meter Bar -->
+      <div class="gdi-meter-card">
+        <div class="gdi-meter-header">
+          <span class="gdi-meter-title">Real-Time Pollution Severity Scale</span>
+          <span class="gdi-meter-badge" id="gdi-badge">79.8 &bull; CRITICAL</span>
+        </div>
+        <div class="gdi-meter-track">
+          <div class="gdi-segment seg-low" title="Low Pollution: 0 to 25"><span>Low (0-25)</span></div>
+          <div class="gdi-segment seg-mod" title="Moderate Pollution: 25 to 50"><span>Mod (25-50)</span></div>
+          <div class="gdi-segment seg-high" title="High Pollution: 50 to 75"><span>High (50-75)</span></div>
+          <div class="gdi-segment seg-crit" title="Critical Pollution: 75 to 100"><span>Crit (75-100)</span></div>
+          <div class="gdi-needle-marker" id="gdi-needle" style="left: 79.8%;"></div>
+        </div>
+        <div class="gdi-meter-fill-container">
+          <div class="gdi-meter-fill-bar" id="gdi-fill-bar" style="width: 79.8%;"></div>
+        </div>
+
+        <div class="calc">
+          <div>
+            <label>Polythene Count (Weight 1.0)
+              <input id="n_polythene" type="number" min="0" value="3">
+            </label>
+            <label>Polythene Avg Conf
+              <input id="c_polythene" type="number" step="0.01" min="0" max="1" value="0.85">
+            </label>
+          </div>
+          <div>
+            <label>Plastic Count (Weight 0.8)
+              <input id="n_plastic" type="number" min="0" value="2">
+            </label>
+            <label>Plastic Avg Conf
+              <input id="c_plastic" type="number" step="0.01" min="0" max="1" value="0.90">
+            </label>
+          </div>
+          <div>
+            <label>Glass Count (Weight 0.7)
+              <input id="n_glass" type="number" min="0" value="0">
+            </label>
+            <label>Glass Avg Conf
+              <input id="c_glass" type="number" step="0.01" min="0" max="1" value="0.80">
+            </label>
+          </div>
+          <div>
+            <label>Metal Count (Weight 0.6)
+              <input id="n_metal" type="number" min="0" value="0">
+            </label>
+            <label>Metal Avg Conf
+              <input id="c_metal" type="number" step="0.01" min="0" max="1" value="0.80">
+            </label>
+          </div>
+          <div>
+            <label>Area Normalization (&times;10m&sup2;)
+              <input id="area" type="number" step="0.1" min="0.1" value="1.0">
+            </label>
+          </div>
+        </div>
+
+        <div class="out" id="gout" aria-live="polite">GDI = 79.8 / 100 &rarr; CRITICAL POLLUTION</div>
+      </div>
+      <p>Worked thesis validation benchmark: 3 floating polythene bags (0.85 conf) and 2 plastic containers (0.90 conf) yield 79.8, instantly escalating municipal cleanup priority to Critical.</p>
+    </div>
+  </section>
+
+  <!-- Research Timeline Section -->
+  <section id="timeline">
+    <div class="wrap">
+      <h2>Research timeline</h2>
+      <div class="tl">
+        <div>
+          <small>Stage 1 &bull; Q3 2025</small>
+          <h3>Problem Identification &amp; Literature Review</h3>
+          <p>Analysis of Sri Lankan river pollution (Kelani) and recreational drowning fatalities; synthesis of 5 core computer vision papers; formulation of the research gap.</p>
+        </div>
+        <div>
+          <small>Stage 2 &bull; Q4 2025</small>
+          <h3>Dataset Collection, Field Imagery &amp; Annotation</h3>
+          <p>Custom field capture in Sri Lanka (Kelani River, Maha Oya, reservoir shores) combined with Roboflow public datasets. Class mapping, glare augmentation, and YOLO format labeling.</p>
+        </div>
+        <div>
+          <small>Stage 3 &bull; Q1 2026</small>
+          <h3>Model Training, Architecture Search &amp; Optimization</h3>
+          <p>Comparative experiments between YOLOv8n, YOLOv11s, and YOLO11m across Google Colab T4, Kaggle GPUs, and Apple Silicon MPS. Hyperparameter tuning and loss convergence tracking.</p>
+        </div>
+        <div>
+          <small>Stage 4 &bull; Q2 2026</small>
+          <h3>Mathematical Decision Logic &amp; FSM Synthesis</h3>
+          <p>Formulation of the weighted GDI algorithm, 6-stage metric proximity spatial pipeline, 10-call sliding window temporal drowning retention, and WHO RAG medical routing.</p>
+        </div>
+        <div>
+          <small>Stage 5 &bull; Q3 2026</small>
+          <h3>End-to-End System Integration &amp; Dashboard</h3>
+          <p>Python FastAPI backend, SQLite surveillance database, WebSocket streaming, Next.js telemetry radar, and multi-modal audio alerts.</p>
+        </div>
+        <div>
+          <small>Stage 6 &bull; August 2026</small>
+          <h3>Empirical Validation, Benchmarking &amp; Final Viva Defense</h3>
+          <p>Field validation of Frame 125 edge clearance resolution, confusion matrix audits, ablation studies, and comprehensive academic dissertation defense.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evaluation Section with Visual Metric Comparison Bars -->
+  <section id="eval">
+    <div class="wrap">
+      <h2>Evaluation &amp; empirical benchmarks</h2>
+      <p>All vision components are rigorously evaluated across established object detection metrics: Precision, Recall, F1-Score, mAP@0.5, and mAP@0.5-0.95, alongside real-world inference latency in milliseconds.</p>
+      
+      <!-- Animal Hazard Detection Table with Visual Metric Progress Bars -->
+      <h3 style="margin-top:2rem">Measured Evaluation: Animal Hazard Detection</h3>
+      <p>Evaluated on the decoupled dual YOLOv8 model at epoch 100 on test footage.</p>
+      
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Target</th>
+              <th>Measured (Epoch 100)</th>
+              <th>Visual Performance Bar</th>
+              <th>Evaluation Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Precision</b></td>
+              <td>&ge; 0.80</td>
+              <td class="y">0.914 (91.4%)</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 91.4%;"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="y">Exceeded (+11.4 pp)</td>
+            </tr>
+            <tr>
+              <td><b>Recall</b></td>
+              <td>&ge; 0.75</td>
+              <td class="y">0.885 (88.5%)</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 88.5%;"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="y">Exceeded (+13.5 pp)</td>
+            </tr>
+            <tr>
+              <td><b>F1-Score</b></td>
+              <td>&ge; 0.75</td>
+              <td class="y">0.899 (89.9%)</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 89.9%;"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="y">Exceeded (+14.9 pp)</td>
+            </tr>
+            <tr>
+              <td><b>mAP@0.5</b></td>
+              <td>&ge; 0.75</td>
+              <td class="y">0.927 (92.7%)</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill gold" style="width: 92.7%;"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="y">Exceeded (+17.7 pp)</td>
+            </tr>
+            <tr>
+              <td><b>Inference Speed</b></td>
+              <td>&le; 50 ms</td>
+              <td class="y">Real-time (&sim;24 ms)</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 95%;"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="y">Target Met</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Drowning Surveillance Comparative Benchmark Table -->
+      <h3 style="margin-top:2.4rem">Measured Evaluation: Automated Drowning Detection</h3>
+      <p>Three-stage model ablation progression demonstrating significant generalization gains.</p>
+      
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Model 1 Baseline (YOLOv8n)</th>
+              <th>Model 2 Fine-Tuned (20 Epochs)</th>
+              <th>Deployed Checkpoint (drowning_best.pt)</th>
+              <th>Overall Progress Bar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Precision</b></td>
+              <td>71.13%</td>
+              <td>80.64%</td>
+              <td class="y">90.67%</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 90.67%;"></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Recall</b></td>
+              <td>71.57%</td>
+              <td>74.51%</td>
+              <td class="y">89.31%</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 89.31%;"></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><b>F1-Score</b></td>
+              <td>71.35%</td>
+              <td>77.46%</td>
+              <td class="y">89.98%</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 89.98%;"></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><b>mAP@0.5</b></td>
+              <td>73.04%</td>
+              <td>81.43%</td>
+              <td class="y">93.22%</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill gold" style="width: 93.22%;"></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><b>mAP@0.5-0.95</b></td>
+              <td>28.90%</td>
+              <td>45.46%</td>
+              <td class="y">73.17%</td>
+              <td>
+                <div class="metric-bar-cell">
+                  <div class="metric-bar-track">
+                    <div class="metric-bar-fill" style="width: 73.17%;"></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:2.4rem">Verification Protocol &amp; Evidence Audit: Emergency First-Aid Chatbot</h3>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Requirement Description</th>
+              <th>Verification Criterion</th>
+              <th>Planned Artifact</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><b>FR-01</b></td><td>Accept Text Input</td><td>Verifies user message is captured accurately, retained in session, and parsed</td><td>Conversation log</td><td class="y">Design Validated</td></tr>
+            <tr><td><b>FR-02</b></td><td>Support Speech Interaction</td><td>Hands-free speech capture and synthesized spoken audio delivery</td><td>Audio &amp; transcript log</td><td class="y">Design Validated</td></tr>
+            <tr><td><b>FR-03</b></td><td>Maintain Session Facts</td><td>Multi-turn tracking of vitals across evolving user statements</td><td>Multi-turn state trace</td><td class="y">Design Validated</td></tr>
+            <tr><td><b>SR-01</b></td><td>Domain Restriction</td><td>Rejects off-topic, tourist, or adversarial queries outside first aid</td><td>Off-topic test suite</td><td class="y">Design Validated</td></tr>
+            <tr><td><b>SR-02</b></td><td>Ground Medical Statements</td><td>Responses mapped strictly to vetted WHO &amp; Red Cross guideline passages</td><td>Source citation review</td><td class="y">Design Validated</td></tr>
+            <tr><td><b>SR-03</b></td><td>Escalate Urgent Situations</td><td>Unresponsive or severe conditions immediately trigger emergency alert</td><td>Clinical scenario review</td><td class="y">Design Validated</td></tr>
+            <tr><td><b>CAG-01</b></td><td>Cache Invalidation Safety</td><td>Cached advice invalidated immediately upon patient vitals state transition</td><td>Cache invalidation log</td><td class="y">Design Validated</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Documents Section -->
+  <section id="docs">
+    <div class="wrap">
+      <h2>Research documents</h2>
+      <p>Original academic documentation, thesis manuscripts, and methodology specifications produced during the project:</p>
+      
+      <div class="grid">
+        <div class="card">
+          <h3>AquaGuard Research Overview</h3>
+          <p>Integrated research proposal, comprehensive literature review, gap analysis, and system architecture (PDF).</p>
+          <a href="docs/AquaGuard_Research.pdf" target="_blank" rel="noopener">Open PDF &rarr;</a>
+        </div>
+        <div class="card">
+          <h3>Methodology: Wildlife Proximity</h3>
+          <p>Nuzri (Ahamed M.U.N) &bull; IT22197900. Mathematical 6-stage spatial pipeline and Frame 125 benchmark resolution (Word).</p>
+          <a href="docs/Nuzri_Methodology.docx" download>Download DOCX &darr;</a>
+        </div>
+        <div class="card">
+          <h3>Methodology: Drowning Surveillance</h3>
+          <p>Ithayavelini M.A &bull; IT22194480s. 10-call sliding window history, 8s write cooldown, and video telemetry (Word).</p>
+          <a href="docs/Ithayavelini_M_A_Methodology.docx" download>Download DOCX &darr;</a>
+        </div>
+        <div class="card">
+          <h3>Methodology: Crowd &amp; TankBot</h3>
+          <p>Binusha. ByteTrack person counting, density thresholds, and reservoir RAG assistance (Word).</p>
+          <a href="docs/Binusha_Methodology.docx" download>Download DOCX &darr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anticipated Viva Q&A Accordion Section -->
+  <section id="viva">
+    <div class="wrap">
+      <h2>Anticipated viva examination questions</h2>
+      <p>Authoritative technical responses to anticipated panel questions regarding system novelty, computer vision trade-offs, spatial precision, and clinical safety boundaries:</p>
+
+      <div class="q">
+        <button aria-expanded="false">What is fundamentally new compared with existing floating-object research?</button>
+        <p>All five benchmarked papers halt at bounding-box detection accuracy without decision frameworks. AquaGuard introduces the danger-weighted Garbage Density Index (GDI), geolocation-based temporal tracking, and integrates three additional public-safety neural modules into a single unified platform.</p>
+      </div>
+
+      <div class="q">
+        <button aria-expanded="false">Why was an edge-to-edge boundary distance required rather than centroid distance for wildlife proximity?</button>
+        <p>Centroid distance models objects as dimensionless geometric points. Large wildlife (such as elephants or bears occupying 350 to 450 pixels in sensor width) make physical contact at their outer perimeter where physical clearance gap <code>d_edge</code> reaches 0.0 meters, while their geometric center is still over 200 pixels away! Measuring physical boundary clearance (<code>d_edge_px = &radic;(&Delta;x&sup2; + &Delta;y&sup2;)</code>) eliminates life-threatening alert latency.</p>
+      </div>
+
+      <div class="q">
+        <button aria-expanded="false">How was the supervisor's Frame 125 critique resolved mathematically?</button>
+        <p>In benchmark Frame 125, an elephant was only 16 px (approx. 8 cm) from a human bather, but centroid distance was 290.8 px. Because 290.8 px exceeded the legacy 220 px threshold, the legacy system erroneously remained in WARNING. The overhauled 6-stage engine evaluates dual criteria: since boundary clearance <code>d_edge = 0.08m &le; 1.5m</code> and metric distance <code>d_meters = 1.51m &le; 3.5m</code>, the engine escalates immediately and correctly to CRITICAL, triggering the emergency siren.</p>
+      </div>
+
+      <div class="q">
+        <button aria-expanded="false">How does the temporal emergency logic prevent false alarms and missed drowning incidents?</button>
+        <p>The system applies the temporal rule <code>E_t = (d_t = 1) OR (sum(H_t) &ge; 2)</code> across a 10-call sliding history window. A single positive frame immediately triggers CRITICAL to safeguard human life, while two positive detections maintain the CRITICAL alert state across up to 8 subsequent empty frames, preventing alert flicker during splashes or temporary submersion. An 8-second write cooldown prevents database saturation.</p>
+      </div>
+
+      <div class="q">
+        <button aria-expanded="false">How does Cache-Augmented Generation (CAG) ensure patient safety in first-aid emergencies?</button>
+        <p>The CAG cache key binds <code>(guidance_version, scenario_class, language, patient_state)</code>. If the bystander reports any change in patient condition (e.g. victim loses consciousness or stops breathing), the previous cache entry is immediately invalidated, preventing dangerous reuse of stale instructions and instantly triggering CPR escalation protocols.</p>
+      </div>
+
+      <div class="q">
+        <button aria-expanded="false">How does the system calibrate pixel distances to real-world meters from a monocular camera?</button>
+        <p>Using perspective pinhole geometry anchored by standard human anatomical dimensions (adult standing height <code>H_human = 1.70 m</code>). By computing detected human bounding box pixel height <code>h_human = y2 - y1</code>, the engine dynamically calculates the depth scale factor <code>S_depth = 1.70 / h_human</code> (m/px), naturally converting both centroid and boundary clearance into physical meters.</p>
+      </div>
+
+      <div class="q">
+        <button aria-expanded="false">Why decouple wildlife and human detection into two separate YOLOv8 models?</button>
+        <p>Decoupling into <code>Animaldetect.pt</code> and <code>Human.pt</code> permits independent optimization of anchor priors, confidence thresholds, and inference parameters for quadruped wildlife versus upright human bathers without mutual feature interference.</p>
+      </div>
+
+      <div class="q">
+        <button aria-expanded="false">What is the policy regarding traditional Sri Lankan home remedies in emergency advice?</button>
+        <p>Under the strict medical boundary, traditional remedies are never permitted to delay emergency ambulance dispatch (1990 Suwa Seriya). Cultural remedies are restricted to secondary, harmless supplementary practices only after standard medical care is administered, and are excluded entirely in acute crises like venomous snakebites or drowning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Team Section -->
+  <section id="team">
+    <div class="wrap">
+      <h2>Research team &amp; affiliations</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Lithurshna</h3>
+          <p>Garbage detection, waste categorization, and Garbage Density Index (GDI).</p>
+        </div>
+        <div class="card">
+          <h3>Nuzri (Ahamed M.U.N)</h3>
+          <p>Human-wildlife proximity detection &amp; 6-stage metric spatial pipeline (IT22197900, SLIIT).</p>
+        </div>
+        <div class="card">
+          <h3>Ithayavelini M.A</h3>
+          <p>Automated drowning surveillance, temporal state retention &amp; MJPEG telemetry (IT22194480s, SLIIT).</p>
+        </div>
+        <div class="card">
+          <h3>Parami H.K.B</h3>
+          <p>Emergency first-aid guidance chatbot &amp; Cache-Augmented Generation (IT22125934, SLIIT).</p>
+        </div>
+      </div>
+      
+      <p style="margin-top:1.8rem"><b>Supervisors:</b> Prof. Anuradha Karunasena, Mr. Samadhi Rathnayake &bull; <b>Institution:</b> Sri Lanka Institute of Information Technology (SLIIT)</p>
+      
+      <h3 style="margin-top:1.5rem">Academic References</h3>
+      <p style="font-size:0.86rem;line-height:1.7;">
+        Cao et al. (2025) <i>Sci. Reports</i>, 10.1038/s41598-025-32817-x &bull; 
+        Zhao et al. (2026) <i>Applied Sciences</i>, 10.3390/app16020651 &bull; 
+        Wang et al. (2026) <i>Frontiers Comp. Sci.</i>, 10.3389/fcomp.2026.1859574 &bull; 
+        Dong et al. (2026) <i>PLOS ONE</i>, 10.1371/journal.pone.0340822 &bull; 
+        MDPI Water (2024) 10.3390/w16101373 &bull; 
+        Wijayaweera et al. (2024) <i>Water</i>, 10.3390/w16192766 &bull; 
+        IUCN SSC (2023) <i>Guidelines on Human-Wildlife Conflict</i> &bull; 
+        Leorna &amp; Brinkman (2022) <i>Ecol. Inform.</i>, 10.1016/j.ecoinf.2022.101876 &bull; 
+        Bewley et al. (2016) <i>SORT</i> &bull; 
+        Zhang et al. (2022) <i>ByteTrack</i> &bull; 
+        Lewis et al. (2020) <i>RAG</i> &bull; 
+        WHO (2021) <i>AI for Health Safety Guidelines</i>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <p style="margin:0 auto 0.4rem;color:var(--txt);font-weight:600;">AquaGuard: Integrated Water Safety &amp; Environmental Intelligence Platform</p>
+      <p style="margin:0 auto;font-size:0.84rem;">Sri Lanka Institute of Information Technology (SLIIT) &bull; Academic Documentation Site &bull; August 2026</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

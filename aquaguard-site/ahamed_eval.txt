@@ -1,0 +1,312 @@
+--- PAGE 38 ---
+Wildlife Threat Detection • Individual Research Report 
+29 
+ 
+Figure 3.2 Supplied precision, recall and mAP@0.5 at sampled epoch checkpoints 
+The strongest improvement occurs before the later reported checkpoints. At epoch 20, precision is 
+already 0.785, recall is 0.751 and mAP@0.5 is 0.792. By epoch 40, the reported mAP@0.5 is 
+0.901. At epoch 50 it reaches 0.915, and at epoch 57 it reaches 0.927. The reported checkpoints 
+therefore show steady improvement across the early series, followed by comparatively small late 
+variation. This is a pattern of the available observations, not an exhaustive account of all epochs. 
+The highest supplied mAP@0.5 value is 0.927, occurring at both epoch 57 and epoch 100. At 
+epoch 70 it is 0.925 and at epoch 90 it is 0.926. Similarly, precision is 0.914 at epochs 57 and 
+100, and recall is 0.885 at those same checkpoints. Such near -constant reported performance 
+suggests that later training may yield diminishing validation gains. It does not prove that the 
+epoch-57 weights have equal robustness, calibration or performance on a truly independent test 
+set. 
+Precision and recall describe a trade -off shaped partly by the confidence threshold used during 
+detection evaluation. A single precision –recall pair does not describe the full operating 
+characteristic. For an actual alert application, the relationship between false positives, missed 
+animals and resulting alert categories should be evaluated over a range of thresholds. The 
+supplied checkpoint table does not state the inference threshold behind each reported metric, so 
+no threshold optimization is attempted. 
+mAP@0.5 is reported with a specific overlap criterion. It should not be relabeled as 
+mAP@0.5:0.95, because the latter evaluates performance across a stricter family of IoU 
+thresholds [6]. The distinction is relevant to threat monitoring: coarse bounding boxes may still 
+count as correct under a relatively permissive IoU match yet produce centroids whose error is 
+
+--- PAGE 39 ---
+Wildlife Threat Detection • Individual Research Report 
+30 
+large enough to affect a 220 -pixel boundary test. Bounding -box localization error therefore 
+deserves separate investigation for proximity-critical scenes. 
+Epoch Box loss Class loss DFL loss Precision Recall mAP@0.5 
+0 4.821 3.514 2.104 0.312 0.285 0.298 
+10 3.105 1.842 1.652 0.614 0.589 0.625 
+20 2.450 1.205 1.341 0.785 0.751 0.792 
+30 1.980 0.850 1.150 0.842 0.820 0.855 
+40 1.652 0.612 1.015 0.885 0.864 0.901 
+50 1.410 0.505 0.940 0.905 0.875 0.915 
+57 1.285 0.442 0.895 0.914 0.885 0.927 
+70 1.280 0.440 0.892 0.915 0.884 0.925 
+90 1.275 0.438 0.890 0.913 0.885 0.926 
+100 1.274 0.439 0.891 0.914 0.885 0.927 
+Table 3.1 Supplied checkpoint values used to generate the training curves 
+3.1.3 Class-Level Normalized Confusion Matrix 
+The supplied confusion matrix has actual classes on rows and predicted classes on columns, 
+ordered elephant, leopard, tiger, bear, buffalo, cow, person and background. Each row sums to 
+1.00, indicating row -wise normalization in the provided numeric representation. Figure 3.3 
+reproduces the entire eight -by-eight matrix as a heatmap, with the largest proportions 
+concentrated on its diagonal. Dark diagonal cells indicate strong reported correct -class 
+proportions within their respective actual-label rows. 
+--- PAGE 40 ---
+Wildlife Threat Detection • Individual Research Report 
+31 
+ 
+Figure 3.3 Row-normalized confusion matrix for the supplied eight core classes 
+Elephant has a diagonal entry of 0.95, with a 0.02 value predicted as buffalo, 0.01 as bear and 
+0.02 as background. Leopard has a diagonal entry of 0.93, including 0.04 predicted as tiger and 
+0.03 as background. Tiger has a diagonal entry of 0.94, including 0.03 predicted as leopard and 
+0.03 as background. These values indicate that the most visible non -diagonal mix-up for leopard 
+is tiger, and vice versa. The figure itself does not identify which specific images caused the errors. 
+Bear has a diagonal value of 0.91 and a 0.05 background entry. Buffalo also has a diagonal of 
+0.91 and is predicted as cow at 0.04. Cow has the lowest diagonal among the six animal classes at 
+0.90, with a 0.05 entry as buffalo and 0.05 as background. This animal -to-animal confusion is 
+relevant for a species -specific user interface. However, under the current four -state FSM, any 
+valid animal still contributes to the basic animal-presence condition, so species confusion may not 
+change state selection in every case. 
+Person has a diagonal entry of 0.95 and a 0.05 background entry. Background has a diagonal 
+entry of 0.82, with non -zero predictions distributed across every foreground category: elephant 
+
+--- PAGE 41 ---
+Wildlife Threat Detection • Individual Research Report 
+32 
+0.01, leopard 0.03, tiger 0.02, bear 0.03, buffalo 0.02, cow 0.03 and person 0.04. This makes 
+background the row with the lowest diagonal proportion. Interpretation should remain cautious 
+because the input does not explain how the two-model pipeline was combined into one eight-class 
+matrix or how “background” examples were defined. 
+Actual class Diagonal proportion Largest notable alternative 
+prediction 
+Elephant 0.95 Buffalo 0.02; background 0.02 
+Leopard 0.93 Tiger 0.04 
+Tiger 0.94 Leopard 0.03; background 0.03 
+Bear 0.91 Background 0.05 
+Buffalo 0.91 Cow 0.04 
+Cow 0.90 Buffalo 0.05; background 0.05 
+Person 0.95 Background 0.05 
+Background 0.82 Person 0.04 
+Table 3.2 Per-row diagonal proportions and prominent alternatives 
+The unweighted mean of the seven foreground diagonal values is approximately 0.927; the eight -
+row mean including background is approximately 0.914. These numbers are arithmetic 
+summaries of the supplied matrix and not an empirical overall accuracy. If classes contain 
+different numbers of test samples, the correct support -weighted average will differ. Because no 
+class counts or underlying confusion counts were supplied, the thesis does not claim any value for 
+global classification accuracy. 
+A further ambiguity arises from the architecture’s use of separate wildlife and human models. A 
+confusion matrix combining “Person” and six animal species may have been constructed from 
+merged detector outputs or a separate aggregated evaluation. Both are possible, but neither is 
+established by the inputs. The final submitted thesis should explicitly name the evaluation script 
+and define how predictions from Animaldetect.pt and Human.pt were compared against one 
+eight-category reference label set. 
+3.1.4 Interpretation of Cross-Class Errors 
+The leopard –tiger and buffalo –cow entries are especially useful for identifying where targeted 
+review could be prioritized. For leopard, 4% of the normalized row is assigned to tiger; for tiger, 
+3% is assigned to leopard. For buffalo, 4% is assigned to cow; for cow, 5% is assigned to buffalo. 
+This observation describes asymmetry as represented in the normalized matrix. It does not reveal 
+the actual number of mistaken samples or whether the same error rates would occur in a fresh 
+field dataset. 
+Background confusion deserves separate attention because missing a genuine animal or person 
+can suppress the proximity analysis entirely. For example, if an actual person is placed in 
+--- PAGE 42 ---
+Wildlife Threat Detection • Individual Research Report 
+33 
+background by the detector, the logical input to the FSM might incorrectly become “animal only” 
+rather than “animal plus human.” The magnitude and consequence of this risk depend on which 
+errors survive tracking, thresholding and multi -frame confirmation. A confusion matrix from one 
+stage cannot fully predict the state-level error rate. 
+An incorrect animal species label may also affect interpretation by local operators even if it does 
+not change the current FSM state. A leopard and a cow can require substantially different 
+responses, which the present four-state proximity rule does not represent. The model therefore has 
+a possible dual purpose: the generic animal -presence condition drives current escalation, while 
+accurate species identification can supply situational context. Species -specific risk policy should 
+only be introduced after consultation with wildlife specialists and validation of the taxonomy. 
+Actual / predicted pair Given normalized entry Potential downstream concern 
+Leopard → Tiger 0.04 Wrong species information in logs and interface 
+Tiger → Leopard 0.03 Wrong species information in logs and interface 
+Buffalo → Cow 0.04 Confusion between visually related large animals 
+Cow → Buffalo 0.05 Confusion between visually related large animals 
+Person → Background 0.05 A genuine person may be omitted from proximity analysis 
+Bear → Background 0.05 Animal-presence warning may be missed 
+Background → Person 0.04 False human may cause unnecessary CAUTION or CRITICAL 
+Table 3.3 Selected off-diagonal entries and possible operational impact 
+3.1.5 End-to-End Threat Classification Observability 
+The presence of a working system architecture does not establish the end -to-end confusion 
+behavior of the FSM. An actual monitoring study must compare predicted alert states against 
+annotations on time -aligned scenes, not simply compare detector class names against ground 
+truth. A single video clip might contain several person –animal pairs with different centroids; a 
+model error on the nearest pair could matter more than an error on a distant pair. This motivates a 
+dedicated threat-state evaluation dataset. 
+For each annotated frame, the evaluator would record true animal and human bounding boxes, the 
+correct minimum image -plane distance under a documented coordinate convention and the 
+derived reference state. Predicted state and transition timestamps can then be compared with the 
+reference. A four -by-four state confusion matrix, missed -critical percentage, false -critical 
+--- PAGE 43 ---
+Wildlife Threat Detection • Individual Research Report 
+34 
+percentage and mean transition delay are more directly related to system purpose than animal -
+species mAP alone. None of these measurements can be derived from the currently provided data. 
+An additional test should examine threshold stability. Two video sequences might contain the 
+same subjects with different camera shake or tracking noise; centroid estimates may move above 
+and below 220 pixels even if the true subjects are not changing their distance significantly. A 
+stable system should have a documented behavior under this condition. The provided FSM does 
+not specify such a stabilization policy, so its raw behavior should be measured first as the baseline 
+before any optional modification is assessed. 
+3.2 Research Findings 
+3.2.1 Observed Training Convergence 
+The most direct numerical finding is the large improvement between the initial and final reported 
+detector checkpoints. Box, class and DFL losses all decline, and precision, recall and mAP@0.5 
+all rise. These trends are mutually consistent with successful optimization during the reported run. 
+Their interpretive boundary is that the complete training logs and split metadata are unavailable. 
+The figures show strong reported checkpoint performance, but they cannot establish external 
+validity in an environment not represented by the source experiment. 
+A second finding is the apparent performance plateau in the provided late observations. Epochs 
+57 and 100 share the same supplied precision, recall and mAP@0.5 values despite small 
+continuing decreases in the loss components. This suggests that additional training beyond the 
+earlier reported checkpoint may yield limited measured benefit under the same evaluation 
+conditions. A full experiment would compare the checkpoints on an independent set and verify 
+whether any performance difference is meaningful in relation to model runtime cost. 
+3.2.2 Class-Specific Strengths and Weaknesses 
+The diagonal entries in the supplied matrix are generally high for the seven foreground categories, 
+with cow at 0.90 and elephant/person at 0.95. The background row is lower at 0.82. These 
+patterns suggest that some of the reported errors involve distinguishing visually related animal 
+classes and separating foreground detections from background. They indicate useful areas for 
+targeted annotation review, but they do not identify whether errors originate from image 
+resolution, poor lighting, label ambiguity or a particular preprocessing decision. 
+The significance of an error depends on the application layer. Confusing cow with buffalo could 
+leave the animal -presence branch active and therefore preserve the broad threat state, while 
+missing a human may suppress CAUTION or CRITICAL entirely. It is therefore insufficient to 
+optimize only average species recognition. For field -oriented evaluation, class confusion should 
+--- PAGE 44 ---
+Wildlife Threat Detection • Individual Research Report 
+35 
+be mapped to the likelihood of an incorrect alert state and the consequence of that alert error. This 
+requires paired detector and FSM records. 
+3.2.3 Importance of Explicit Spatial Logic 
+A central design finding is that the four -level alert depends on a small set of understandable 
+conditions: animal presence, human presence and d_min at a single boundary. This makes its 
+decision process auditable. An evaluator can reconstruct why a frame was labeled CRITICAL by 
+checking that at least one animal and person were valid and that their nearest centroids were no 
+farther apart than 220 pixels. Unlike a black-box behavior classifier, the rule can be verified using 
+synthetic geometric inputs before introducing detector uncertainty. 
+The transparency of the rule is also its limitation. A person visually close to an animal in the same 
+image may be separated in depth, and the same physical encounter may project to a very different 
+pixel distance from another camera. The design’s output is consequently best described as an 
+image-space proximity alert . Calibrating physical risk would require additional observational 
+information and expert validation that are not part of the supplied data. 
+3.2.4 Confidence and Temporal Stability 
+The reported 80% confidence rule gives the tracking architecture a named selection criterion, but 
+its exact semantics are underspecified. This prevents a strong conclusion about whether identity 
+locking reduces false alarms, improves precision or causes missed brief encounters. A rigorous 
+experiment should compare the system with and without the identity -lock policy, keeping 
+detector weights and test videos fixed. The outcome measures should include track ID switches, 
+false state transitions, missed critical events and latency. 
+Temporal stability is especially relevant for near -threshold conditions. A single -frame detector 
+can produce isolated false positives, whereas persistent tracks may remove some noise. At the 
+same time, retaining an outdated track can create a false proximity pairing. This is a classic 
+balance between responsiveness and stability that must be tested against actual video sequences. 
+The current architecture provides the right conceptual components for such work, but the supplied 
+numerical results do not quantify their performance. 
+3.3 Discussions 
+3.3.1 Relationship Between Detector Metrics and Practical Safety 
+The detector’s final reported precision of 0.914, recall of 0.885 and mAP@0.5 of 0.927 are 
+promising values in the context of the supplied experiment. However, an encounter alert is 
+formed only after several transformations: image decoding, two model outputs, tracking, centroid 
+calculation, minimum-pair selection, state assignment and notification delivery. A failure at any 
+--- PAGE 45 ---
+Wildlife Threat Detection • Individual Research Report 
+36 
+later stage can weaken end -to-end performance without changing the model -level mAP. This is 
+why the proposed testing matrix deliberately evaluates every stage rather than treating the 
+detector as the entire product. 
+A monitoring system must also distinguish error severity. Some wrong species labels may have 
+little effect on the basic proximity rule, while a missed human near an animal is much more 
+important to the desired warning outcome. A useful future evaluation would assign severity 
+categories to state -level false negatives and false positives, then report them separately. The 
+policy should be established with domain experts, not chosen solely to make the numeric results 
+look favorable. 
+3.3.2 Comparison with Existing Approaches 
+Compared with manual review of camera footage, an automated pipeline offers the possibility of 
+continuous screening and prompt event prioritization. It may reduce the effort of finding 
+candidate animal –human encounters in long recordings. Manual review remains important for 
+verifying unexpected model outputs and interpreting the ecological meaning of an event. The 
+findings of camera -trap research reinforce the need for human involvement where visual 
+conditions or small targets challenge automated systems [2]. 
+Compared with single -frame species detection, the proposed architecture adds temporal identity 
+information and explicit pairwise proximity. Compared with tracking alone, it defines event 
+semantics through the FSM. Compared with an unconstrained machine -learned threat classifier, 
+the geometric threshold is easier to explain and regression -test. These comparisons describe 
+conceptual design properties; no controlled baseline benchmarks were provided that would justify 
+a claim of quantitatively superior end-to-end performance. 
+3.3.3 Methodological Limitations 
+The first limitation is incomplete experimental provenance. The supplied curves and matrix are 
+numeric results, but the original dataset, source notebook, training configuration and validation 
+split are not available. The thesis therefore cannot determine whether checkpoint metrics were 
+generated on training, validation or held -out test data, or whether repeated video frames caused 
+leakage across partitions. These questions must be resolved before a final research evaluation is 
+considered reproducible. 
+The second limitation is the absence of raw confusion counts and class supports. This prevents 
+calculation of support -weighted accuracy, confidence intervals or class -specific sample sizes. A 
+class with few examples can achieve a deceptively high normalized diagonal rate. Without 
+support counts, readers cannot judge the statistical reliability of the displayed 0.90 –0.95 
+--- PAGE 46 ---
+Wildlife Threat Detection • Individual Research Report 
+37 
+foreground values. The matrix is still informative for visualizing the reported distribution, but its 
+statistical meaning is limited. 
+The third limitation is the measurement model. Euclidean centroid distance is defined in pixels 
+and is not physically calibrated. Bounding box centroids may also be unstable under partial 
+occlusion; the center of a visible box can move when an animal turns or is partly hidden, even if 
+the animal’s physical position changes little. The 220 -pixel threshold therefore needs camera -
+specific validation and should not be marketed as a safe real-world separation. 
+The fourth limitation is unverified temporal tracking. The 80% identity -lock rule is specified, but 
+details of track confirmation, re -identification and deletion were not supplied. Since threat states 
+depend on tracks, these missing details directly affect event stability. The fifth limitation is absent 
+end-to-end operational evidence: no alert delivery latency, buzzer measurement, throughput 
+benchmark, multi-camera trial, memory profile or user acceptance results were supplied. 
+The sixth limitation concerns background and human handling in the combined confusion matrix. 
+The architecture explicitly uses two models, but the normalization procedure for the combined 
+matrix is not described. If the matrix combines model streams, its construction needs careful 
+explanation to avoid mistaking it for a native single -model classification confusion matrix. The 
+analysis preserves the provided row/column labels while openly identifying this uncertainty. 
+The seventh limitation is ecological scope. A general animal –human proximity rule does not 
+distinguish protective herd behavior, grazing, fleeing, curiosity or aggression. It also treats a cow 
+and a leopard similarly for the purpose of basic state selection. Such a rule can support situational 
+awareness, but it cannot substitute for professional risk assessment. Responsible deployment 
+needs local protocols, stakeholder participation and periodic review [1]. 
+Evidence item Status in provided material Interpretation boundary 
+Training checkpoints Supplied numeric table Ten sample points; no full epoch history 
+Precision / recall / mAP@0.5 Supplied at those epochs Evaluation split and confidence policy unknown 
+Normalized confusion matrix Supplied 8×8 numbers No counts or test support 
+Overall architecture Supplied process flow Not independently verified against code 
+FSM Supplied named states/transitions Some abrupt transitions not drawn 
+Track accuracy Not supplied No IDF1/HOTA/identity-switch value 
+End-to-end critical latency Not supplied No real-time response claim 
+Physical calibration Not supplied Threshold remains pixel-based 
+Table 3.4 Summary of available evidence and explicit reporting limits 
+--- PAGE 47 ---
+Wildlife Threat Detection • Individual Research Report 
+38 
+3.3.4 Future Enhancements and Validation 
+The first priority is to collect a fully versioned set of annotated videos reflecting the intended 
+camera deployments. Separate videos should include each animal class, mixed animal –human 
+scenes, overlapping targets and common environmental disturbances. Every video should carry 
+metadata such as device, frame size, collection conditions and permission status. These materials 
+would support both detection evaluation and independent assessment of the proximity state 
+machine. 
+The second priority is to evaluate tracking and event integrity. Stable IDs, the use of the 80% lock 
+rule, response to temporary occlusion and the absence of stale pairs should be inspected with test 
+traces. The third priority is to measure system timing and resilience under actual hardware loads. 
+A reported mAP score alone cannot demonstrate that the alert reaches a user in time; capture -to-
+alert latency and missed event rates must be measured directly. 
+The fourth priority is to study distance normalization and calibration. Candidate approaches 
+include per -camera threshold configuration, normalization by image dimensions, perspective -
+specific scaling or physical calibration where feasible. Each alternative should be compared on 
+the same annotated encounter videos. The fifth priority is operator -centered validation: 
+participants should understand state meanings, receive manageable alert volumes and know that 
+the system does not infer animal intent. 
+Only after these steps would it be appropriate to report a field -level claim such as a quantified 
+critical-event recall or a maximum alert delay. Those claims require external validation records 
+and cannot be backfilled from the supplied model training curves. This position does not diminish 
+the design contribution; rather, it distinguishes an interpretable research prototype from a 
+validated safety product. 
+ 
